@@ -48,10 +48,12 @@ export const CardContainer = styled.div`
   }
 
   .tags{
+    display: flex;
     margin-top: 0.75rem;
     margin-bottom: 1rem;
     align-items: center;
     justify-content: center;
+    gap: 0.5rem;
     span {
       padding: 0.25rem 0.5rem;
 

@@ -2,8 +2,43 @@ import { MapPin, Timer, CurrencyDollar } from "phosphor-react";
 import { SuccessContainer, OrderItem } from "./styles";
 
 import illustration from '../../assets/illustration.svg'
+import { useEffect, useState } from "react";
 
+interface NewBuyData {
+  cep: string;
+  street: string;
+  number: string;
+  complement: string;
+  district: string;
+  city: string;
+  uf: string;
+  paymentType: string;
+}
 export function Success (){
+  const [newBuy, setNewBuy] = useState({} as NewBuyData)
+  const paymentTypeFormatted = formatPaymentType()
+
+  function formatPaymentType() {
+    switch(newBuy.paymentType) {
+      case 'creditCard':
+        return 'Cartão de crédito'
+      case 'bank':
+        return 'Cartão de débito'
+      case 'money':
+        return 'Dinheiro'
+      default:
+        return 'Dinheiro'
+    }
+  }
+
+  useEffect(() => {
+    const newBuyJSON = localStorage.getItem('@coffee-delivery:newBuy')
+
+    if (newBuyJSON) {
+      setNewBuy(JSON.parse(newBuyJSON))
+    }
+
+  }, [])
   return (
     <SuccessContainer>
       <div>
@@ -17,7 +52,7 @@ export function Success (){
                   <MapPin size={16} weight="fill"/>
                 </div>
                 <div>
-                  <p>Entrega em <strong>Rua João Daniel Martinelli, 102</strong>, Farrapos - Porto Alegre, RS</p>
+                  <p>Entrega em <strong>{newBuy.street}, {newBuy.number}, {newBuy.complement}</strong>, {newBuy.district} - {newBuy.city}, {newBuy.uf}</p>
                 </div>
               </OrderItem>
               <OrderItem>
@@ -35,7 +70,7 @@ export function Success (){
                 </div>
                 <div>
                   <p>Pagamento na entrega</p>
-                  <p><strong>Cartão de Crédito</strong></p>
+                  <p><strong>{paymentTypeFormatted}</strong></p>
                 </div>
               </OrderItem>
             </div>

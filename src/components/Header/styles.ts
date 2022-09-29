@@ -28,6 +28,21 @@ export const HeaderContainer = styled.header`
     .cart {
       background: ${(props) => props.theme['yellow-light']};
       color: ${(props) => props.theme['yellow-dark']};
+      position: relative;
+
+      span {
+        width: 1.25rem;
+        height: 1.25rem;
+        border-radius: 0.625rem;
+        background: ${(props) => props.theme['yellow-dark']};
+        color: ${(props) => props.theme.white};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -0.625rem;
+        right: -0.625rem;
+      }
     }
   }
 `;

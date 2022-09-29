@@ -112,7 +112,11 @@ export const Payment = styled.div`
     gap: 0.75rem;
     background: ${(props) => props.theme["base-button"]};
     color: ${(props) => props.theme["base-text"]};
-    font-size: 0.75rem; 
+    font-size: 0.75rem;
+  }
+  .selected {
+    background: ${(props) => props.theme["purple-light"]};
+    border: 1px solid ${(props) => props.theme.purple}
   }
 
 `
